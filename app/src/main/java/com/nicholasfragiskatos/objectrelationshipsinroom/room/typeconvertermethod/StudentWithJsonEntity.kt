@@ -1,4 +1,4 @@
-package com.nicholasfragiskatos.objectrelationshipsinroom.room
+package com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

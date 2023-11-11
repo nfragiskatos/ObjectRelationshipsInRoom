@@ -3,6 +3,9 @@ package com.nicholasfragiskatos.objectrelationshipsinroom.room
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.MyRoomTypeConverters
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.StudentWithJsonDao
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.StudentWithJsonEntity
 
 @Database(
     entities = [StudentEntity::class, AddressEntity::class, StudentWithJsonEntity::class],

@@ -1,4 +1,4 @@
-package com.nicholasfragiskatos.objectrelationshipsinroom.room
+package com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod
 
 data class Address(
     val id: Long = 0,

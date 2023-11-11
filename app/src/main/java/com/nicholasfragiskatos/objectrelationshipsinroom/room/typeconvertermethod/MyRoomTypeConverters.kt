@@ -1,4 +1,4 @@
-package com.nicholasfragiskatos.objectrelationshipsinroom.room
+package com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter

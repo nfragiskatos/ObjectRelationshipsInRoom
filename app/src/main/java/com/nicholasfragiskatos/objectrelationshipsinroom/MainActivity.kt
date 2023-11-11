@@ -1,19 +1,22 @@
 package com.nicholasfragiskatos.objectrelationshipsinroom
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.nicholasfragiskatos.objectrelationshipsinroom.databinding.ActivityMainBinding
-import com.nicholasfragiskatos.objectrelationshipsinroom.room.Address
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.MyDatabase
-import com.nicholasfragiskatos.objectrelationshipsinroom.room.MyRoomTypeConverters
-import com.nicholasfragiskatos.objectrelationshipsinroom.room.StudentWithJsonEntity
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.Address
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.MyRoomTypeConverters
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.StudentWithJsonEntity
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,15 +43,24 @@ class MainActivity : AppCompatActivity() {
         binding.btnCreateStudentWithJson.setOnClickListener {
             createStudentWithJson()
         }
+
+        binding.btnGetStudentsWithJson.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val studentsWithJson = db.studentWithJsonDao().getallStudentswithJson()
+                studentsWithJson.forEach {
+                    Log.d(TAG, it.toString())
+                }
+            }
+        }
     }
 
-    fun createStudentWithJson() {
+    private fun createStudentWithJson() {
         lifecycleScope.launch(Dispatchers.IO) {
             db.studentWithJsonDao().saveStudentWithJson(createStudentEntityWithJson())
         }
     }
 
-    fun createStudentEntityWithJson(): StudentWithJsonEntity {
+    private fun createStudentEntityWithJson(): StudentWithJsonEntity {
         val id = Date().time.toLong()
 
         val address = Address(
