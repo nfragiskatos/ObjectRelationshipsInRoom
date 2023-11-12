@@ -1,11 +1,12 @@
-package com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod
+package com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "studentWithJson")
-data class StudentWithJsonEntity(
+@Entity(tableName = "studentWithEmbedded")
+data class StudentWithEmbeddedEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
 
@@ -15,6 +16,6 @@ data class StudentWithJsonEntity(
     @ColumnInfo(name = "last_name")
     val lastName: String,
 
-    @ColumnInfo(name = "address_json")
-    val address: AddressForJson
+    @Embedded
+    val address: AddressForEmbedded
 )

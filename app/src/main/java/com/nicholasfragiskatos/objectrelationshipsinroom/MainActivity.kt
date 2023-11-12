@@ -7,6 +7,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.nicholasfragiskatos.objectrelationshipsinroom.databinding.ActivityMainBinding
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.MyDatabase
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod.AddressForEmbedded
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod.StudentWithEmbeddedEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.AddressForJson
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.MyRoomTypeConverters
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.StudentWithJsonEntity
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnCreateStudentWithJson.setOnClickListener {
-            createStudentWithJson()
+            createStudentWithJsonEntity()
         }
 
         binding.btnGetStudentsWithJson.setOnClickListener {
@@ -52,16 +54,37 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
 
-    private fun createStudentWithJson() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            db.studentWithJsonDao().saveStudentWithJson(createStudentEntityWithJson())
+        binding.btnCreateStudentWithEmbedded.setOnClickListener {
+            createStudentWithEmbeddedEntity()
+        }
+
+        binding.btnGetStudentsWithEmbedded.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val studentsWithEmbedded =
+                    db.studentWithEmbeddedDao().getAllStudentsWithEmbedded()
+
+                studentsWithEmbedded.forEach {
+                    Log.d(TAG, it.toString())
+                }
+            }
         }
     }
 
-    private fun createStudentEntityWithJson(): StudentWithJsonEntity {
-        val id = Date().time.toLong()
+    private fun createStudentWithJsonEntity() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            db.studentWithJsonDao().saveStudentWithJson(buildStudentWithJsonEntity())
+        }
+    }
+
+    private fun createStudentWithEmbeddedEntity() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            db.studentWithEmbeddedDao().saveStudentWithEmbedded(buildStudentWithEmbeddedEntity())
+        }
+    }
+
+    private fun buildStudentWithJsonEntity(): StudentWithJsonEntity {
+        val id = Date().time
 
         val address = AddressForJson(
             id,
@@ -74,6 +97,25 @@ class MainActivity : AppCompatActivity() {
         )
 
         return StudentWithJsonEntity(
+            id + 1,
+            "MyFirstName",
+            "MyLastName",
+            address,
+        )
+    }
+
+    private fun buildStudentWithEmbeddedEntity(): StudentWithEmbeddedEntity {
+        val id = Date().time
+        val address = AddressForEmbedded(
+            "1234",
+            "Paunch Burger",
+            "RD",
+            "Pawnee",
+            "IN",
+            "98765"
+        )
+
+        return StudentWithEmbeddedEntity(
             id + 1,
             "MyFirstName",
             "MyLastName",
