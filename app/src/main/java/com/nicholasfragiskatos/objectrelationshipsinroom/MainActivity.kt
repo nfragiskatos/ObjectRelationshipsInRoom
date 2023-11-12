@@ -14,9 +14,9 @@ import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermetho
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.StudentWithJsonEntity
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import java.util.Date
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Date
 
 private const val TAG = "MainActivity"
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         Room.databaseBuilder(
             applicationContext,
             MyDatabase::class.java,
-            "my-database",
+            "my-database"
         ).addTypeConverter(typeConverters).build()
     }
 
@@ -93,14 +93,14 @@ class MainActivity : AppCompatActivity() {
             "RD",
             "Pawnee",
             "IN",
-            "98765",
+            "98765"
         )
 
         return StudentWithJsonEntity(
             id + 1,
             "MyFirstName",
             "MyLastName",
-            address,
+            address
         )
     }
 
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             id + 1,
             "MyFirstName",
             "MyLastName",
-            address,
+            address
         )
     }
 }

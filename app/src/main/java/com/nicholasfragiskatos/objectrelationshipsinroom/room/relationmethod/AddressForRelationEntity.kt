@@ -1,11 +1,11 @@
-package com.nicholasfragiskatos.objectrelationshipsinroom.room
+package com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class AddressEntity(
+data class AddressForRelationEntity(
 
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
@@ -16,4 +16,6 @@ data class AddressEntity(
     val state: String,
     @ColumnInfo(name = "postal_code")
     val postalCode: String,
+
+    val studentOwnerId: Long
 )
