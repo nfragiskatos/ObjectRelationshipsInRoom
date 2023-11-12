@@ -8,12 +8,12 @@ import com.squareup.moshi.Moshi
 class MyRoomTypeConverters(private val moshi: Moshi) {
 
     @TypeConverter
-    fun fromAddressJson(json: String): Address {
-        return moshi.adapter(Address::class.java).fromJson(json)!!
+    fun fromAddressJson(json: String): AddressForJson {
+        return moshi.adapter(AddressForJson::class.java).fromJson(json)!!
     }
 
     @TypeConverter
-    fun toAddressJson(address: Address): String {
-        return moshi.adapter(Address::class.java).toJson(address)
+    fun toAddressJson(address: AddressForJson): String {
+        return moshi.adapter(AddressForJson::class.java).toJson(address)
     }
 }

@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.nicholasfragiskatos.objectrelationshipsinroom.databinding.ActivityMainBinding
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.MyDatabase
-import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.Address
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.AddressForJson
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.MyRoomTypeConverters
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.StudentWithJsonEntity
 import com.squareup.moshi.Moshi
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnGetStudentsWithJson.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {
-                val studentsWithJson = db.studentWithJsonDao().getallStudentswithJson()
+                val studentsWithJson = db.studentWithJsonDao().getAllStudentsWithJson()
                 studentsWithJson.forEach {
                     Log.d(TAG, it.toString())
                 }
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun createStudentEntityWithJson(): StudentWithJsonEntity {
         val id = Date().time.toLong()
 
-        val address = Address(
+        val address = AddressForJson(
             id,
             "1234",
             "Paunch Burger",

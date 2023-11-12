@@ -10,5 +10,5 @@ interface StudentWithJsonDao {
     fun saveStudentWithJson(student: StudentWithJsonEntity)
 
     @Query("SELECT * FROM studentWithJson")
-    fun getallStudentswithJson(): List<StudentWithJsonEntity>
+    fun getAllStudentsWithJson(): List<StudentWithJsonEntity>
 }

@@ -1,6 +1,6 @@
 package com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod
 
-data class Address(
+data class AddressForJson(
     val id: Long = 0,
     val houseNumber: String,
     val streetName: String,

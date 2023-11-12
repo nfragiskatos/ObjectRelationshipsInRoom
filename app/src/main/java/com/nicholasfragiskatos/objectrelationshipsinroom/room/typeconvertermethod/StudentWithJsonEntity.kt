@@ -10,5 +10,5 @@ data class StudentWithJsonEntity(
     val firstName: String,
     val lastName: String,
 
-    val address: Address,
+    val address: AddressForJson,
 )
