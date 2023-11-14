@@ -12,7 +12,7 @@ import java.util.Date
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-private const val TAG = "RelationActivity"
+private const val TAG = "RelationManyToManyApproachActivity"
 
 class RelationManyToManyApproachActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRelationManyToManyApproachBinding
@@ -44,6 +44,24 @@ class RelationManyToManyApproachActivity : AppCompatActivity() {
                 students.forEach {
                     Log.d(TAG, "${it.student.studentId}, ${it.address}")
                 }
+            }
+        }
+
+        binding.btnDeleteStudent.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val id = binding.etStudentIdInput.text.toString().toLong()
+
+                val deleteStudent = db.studentWithManyToManyRelationDao().deleteStudent(id)
+                Log.d(TAG, "Rows Deleted: $deleteStudent")
+            }
+        }
+
+        binding.btnDeleteAddress.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val id = binding.etAddressId.text.toString().toLong()
+
+                val deleteAddress = db.studentWithManyToManyRelationDao().deleteAddress(id)
+                Log.d(TAG, "Rows Deleted: $deleteAddress")
             }
         }
     }

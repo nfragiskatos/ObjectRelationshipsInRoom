@@ -11,9 +11,8 @@ import androidx.room.PrimaryKey
         ForeignKey(
             entity = StudentWithOneToManyRelationEntity::class,
             parentColumns = arrayOf("studentId"),
-            childColumns = arrayOf("studentOwnerId")
-//            onDelete = ForeignKey.CASCADE
-
+            childColumns = arrayOf("studentOwnerId"),
+            onDelete = ForeignKey.CASCADE
         )
     ]
 )

@@ -25,6 +25,12 @@ interface StudentWithManyToManyRelationDao {
         saveStudentAddressCrossRef(StudentAddressCrossRef(studentId, address.addressId))
     }
 
+    @Query("DELETE FROM studentWithManyToManyRelation where studentId = :studentId")
+    fun deleteStudent(studentId: Long): Int
+
+    @Query("DELETE FROM addressForManyToManyRelation where addressId = :addressId")
+    fun deleteAddress(addressId: Long): Int
+
     @Transaction
     @Query("SELECT * from studentWithManyToManyRelation")
     fun getAllStudentsWithAddresses(): List<StudentWithAddressManyToManyIntermediate>
