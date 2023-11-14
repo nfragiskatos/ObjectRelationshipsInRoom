@@ -7,6 +7,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod.StudentWithEmbeddedDao
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod.StudentWithEmbeddedEntity
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetomany.AddressForOneToManyRelationEntity
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetomany.StudentWithOneToManyRelationDao
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetomany.StudentWithOneToManyRelationEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetoone.AddressForOneToOneRelationEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetoone.StudentWithOneToOneRelationDao
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetoone.StudentWithOneToOneRelationEntity
@@ -17,7 +20,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 @Database(
-    entities = [StudentWithOneToOneRelationEntity::class, AddressForOneToOneRelationEntity::class, StudentWithJsonEntity::class, StudentWithEmbeddedEntity::class],
+    entities = [StudentWithOneToManyRelationEntity::class, AddressForOneToManyRelationEntity::class, StudentWithOneToOneRelationEntity::class, AddressForOneToOneRelationEntity::class, StudentWithJsonEntity::class, StudentWithEmbeddedEntity::class],
     version = 1
 )
 @TypeConverters(MyRoomTypeConverters::class)
@@ -28,6 +31,8 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun studentWithEmbeddedDao(): StudentWithEmbeddedDao
 
     abstract fun studentWithOneToOneRelationDao(): StudentWithOneToOneRelationDao
+
+    abstract fun studentWithOneToManyRelationDao(): StudentWithOneToManyRelationDao
 
     companion object {
         @Volatile
