@@ -1,19 +1,16 @@
 package com.nicholasfragiskatos.objectrelationshipsinroom
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
 import com.nicholasfragiskatos.objectrelationshipsinroom.databinding.ActivityMainBinding
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.MyDatabase
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod.AddressForEmbedded
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod.StudentWithEmbeddedEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.AddressForJson
-import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.MyRoomTypeConverters
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.typeconvertermethod.StudentWithJsonEntity
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import java.util.Date
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,23 +20,16 @@ private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val moshi: Moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
-    private val typeConverters: MyRoomTypeConverters = MyRoomTypeConverters(moshi)
-    private val db: MyDatabase by lazy {
-        Room.databaseBuilder(
-            applicationContext,
-            MyDatabase::class.java,
-            "my-database"
-        ).addTypeConverter(typeConverters).build()
-    }
+    private lateinit var db: MyDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        db = MyDatabase.getInstance(applicationContext)
+
         lifecycleScope.launch(Dispatchers.IO) {
-            val allStudents = db.studentDao().getAllStudents()
         }
 
         binding.btnCreateStudentWithJson.setOnClickListener {
@@ -68,6 +58,12 @@ class MainActivity : AppCompatActivity() {
                     Log.d(TAG, it.toString())
                 }
             }
+        }
+
+        binding.btnGoToRelationScreen.setOnClickListener {
+            val intent = Intent(this, RelationActivity::class.java)
+
+            startActivity(intent)
         }
     }
 
