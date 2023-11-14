@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnGoToRelationOneToManyApproachScreen.setOnClickListener {
+            val intent = Intent(this, RelationOneToManyApproachActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btnGoToRelationScreen.setOnClickListener {
             val intent = Intent(this, RelationActivity::class.java)
             startActivity(intent)

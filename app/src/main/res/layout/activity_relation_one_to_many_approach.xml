@@ -4,28 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RelationActivity">
-
-
-    <Button
-        android:id="@+id/btnCreateStudentForManyToManyRelation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#009688"
-        android:text="Create Student for Many-to-Many Relation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnGetAllStudentsWithOneToManyRelationship" />
+    tools:context=".RelationOneToManyApproachActivity">
 
     <Button
-        android:id="@+id/btnGetAllStudentsWithManyToManyRelationship"
+        android:id="@+id/btnCreateStudentForOneToManyRelation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#009688"
-        android:text="Get All Students With Many-to-Many Relationship"
+        android:text="Create Student for One-to-Many Relation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateStudentForManyToManyRelation" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnGetAllStudentsWithOneToManyRelationship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get All Students With One-to-Many Relationship"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateStudentForOneToManyRelation" />
 
     <EditText
         android:id="@+id/etStudentIdInput"
@@ -39,23 +36,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnCreateAddressForManyToManyRelation"
+        android:id="@+id/btnCreateAddressForOneToManyRelation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#009688"
 
-        android:text="Create Address For Many-to-Many Relation"
+        android:text="Create Address For One-to-Many Relation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCreateAddressForOneToManyRelation" />
-
-    <Switch
-        android:id="@+id/swReuseLastAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reuse Last Address"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateAddressForManyToManyRelation" />
+        app:layout_constraintTop_toBottomOf="@id/etStudentIdInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
