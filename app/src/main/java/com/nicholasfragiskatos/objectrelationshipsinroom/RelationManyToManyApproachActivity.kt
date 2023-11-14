@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.nicholasfragiskatos.objectrelationshipsinroom.databinding.ActivityRelationBinding
+import com.nicholasfragiskatos.objectrelationshipsinroom.databinding.ActivityRelationManyToManyApproachBinding
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.MyDatabase
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.manytomany.AddressForManyToManyRelationEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.manytomany.StudentWithManyToManyRelationEntity
@@ -14,13 +14,13 @@ import kotlinx.coroutines.launch
 
 private const val TAG = "RelationActivity"
 
-class RelationActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityRelationBinding
+class RelationManyToManyApproachActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityRelationManyToManyApproachBinding
     private lateinit var db: MyDatabase
     private var lastAddress: AddressForManyToManyRelationEntity? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRelationBinding.inflate(layoutInflater)
+        binding = ActivityRelationManyToManyApproachBinding.inflate(layoutInflater)
         setContentView(binding.root)
         db = MyDatabase.getInstance(applicationContext)
 
