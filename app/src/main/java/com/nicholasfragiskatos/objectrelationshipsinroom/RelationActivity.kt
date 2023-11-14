@@ -10,8 +10,6 @@ import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.man
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.manytomany.StudentWithManyToManyRelationEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetomany.AddressForOneToManyRelationEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetomany.StudentWithOneToManyRelationEntity
-import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetoone.AddressForOneToOneRelationEntity
-import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetoone.StudentWithOneToOneRelationEntity
 import java.util.Date
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,30 +26,8 @@ class RelationActivity : AppCompatActivity() {
         setContentView(binding.root)
         db = MyDatabase.getInstance(applicationContext)
 
-        setupOneToOneClickListeners()
         setupOneToManyClickListeners()
         setupManyToManyClickListeners()
-    }
-
-    private fun setupOneToOneClickListeners() {
-        binding.btnCreateStudentForOneToOneRelation.setOnClickListener {
-            createStudentForOneToOneRelation()
-        }
-
-        binding.btnCreateAddressForOneToOneRelation.setOnClickListener {
-            createAddressForOneToOneRelation()
-        }
-
-        binding.btnGetAllStudentsWithOneToOneRelationship.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
-                val students =
-                    db.studentWithOneToOneRelationDao().getAllStudentsWithAddresses()
-
-                students.forEach {
-                    Log.d(TAG, "${it.student.studentId}, ${it.address}")
-                }
-            }
-        }
     }
 
     private fun setupOneToManyClickListeners() {
@@ -94,48 +70,6 @@ class RelationActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun createStudentForOneToOneRelation() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            db.studentWithOneToOneRelationDao().saveStudent(
-                buildOneToOneStudent()
-            )
-        }
-    }
-
-    private fun createAddressForOneToOneRelation() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            db.studentWithOneToOneRelationDao().saveAddress(
-                buildOneToOneAddress()
-            )
-        }
-    }
-
-    private fun buildOneToOneStudent(): StudentWithOneToOneRelationEntity {
-        val id = Date().time
-        return StudentWithOneToOneRelationEntity(
-            id,
-            "MyFirstName",
-            "MyLastName"
-        )
-    }
-
-    private fun buildOneToOneAddress(): AddressForOneToOneRelationEntity {
-        val id = Date().time
-
-        val studentId = binding.etStudentIdInput.text.toString().toLong()
-
-        return AddressForOneToOneRelationEntity(
-            id,
-            "1234",
-            "Paunch Burger",
-            "RD",
-            "Pawnee",
-            "IN",
-            "98765",
-            studentId
-        )
     }
 
     private fun createStudentForOneToManyRelation() {

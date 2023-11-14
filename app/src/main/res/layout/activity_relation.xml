@@ -6,23 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".RelationActivity">
 
-    <Button
-        android:id="@+id/btnCreateStudentForOneToOneRelation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Student for One-to-One Relation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnGetAllStudentsWithOneToOneRelationship"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get All Students With One-to-One Relationship"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateStudentForOneToOneRelation" />
 
     <Button
         android:id="@+id/btnCreateStudentForOneToManyRelation"
@@ -74,16 +57,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnCreateAddressForOneToOneRelation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Address For One-to-One Relation"
-
-        app:layout_constraintTop_toBottomOf="@id/etStudentIdInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnCreateAddressForOneToManyRelation"
