@@ -7,6 +7,10 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod.StudentWithEmbeddedDao
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.embeddedmethod.StudentWithEmbeddedEntity
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.manytomany.AddressForManyToManyRelationEntity
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.manytomany.StudentAddressCrossRef
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.manytomany.StudentWithManyToManyRelationDao
+import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.manytomany.StudentWithManyToManyRelationEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetomany.AddressForOneToManyRelationEntity
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetomany.StudentWithOneToManyRelationDao
 import com.nicholasfragiskatos.objectrelationshipsinroom.room.relationmethod.onetomany.StudentWithOneToManyRelationEntity
@@ -20,7 +24,17 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 @Database(
-    entities = [StudentWithOneToManyRelationEntity::class, AddressForOneToManyRelationEntity::class, StudentWithOneToOneRelationEntity::class, AddressForOneToOneRelationEntity::class, StudentWithJsonEntity::class, StudentWithEmbeddedEntity::class],
+    entities = [
+        StudentWithManyToManyRelationEntity::class,
+        AddressForManyToManyRelationEntity::class,
+        StudentAddressCrossRef::class,
+        StudentWithOneToManyRelationEntity::class,
+        AddressForOneToManyRelationEntity::class,
+        StudentWithOneToOneRelationEntity::class,
+        AddressForOneToOneRelationEntity::class,
+        StudentWithJsonEntity::class,
+        StudentWithEmbeddedEntity::class
+    ],
     version = 1
 )
 @TypeConverters(MyRoomTypeConverters::class)
@@ -33,6 +47,8 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun studentWithOneToOneRelationDao(): StudentWithOneToOneRelationDao
 
     abstract fun studentWithOneToManyRelationDao(): StudentWithOneToManyRelationDao
+
+    abstract fun studentWithManyToManyRelationDao(): StudentWithManyToManyRelationDao
 
     companion object {
         @Volatile
